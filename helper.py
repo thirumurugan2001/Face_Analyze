@@ -1,6 +1,5 @@
 import warnings
 warnings.filterwarnings("ignore", message="pkg_resources is deprecated")
-
 import clip
 import torch
 from PIL import Image

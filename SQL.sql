@@ -1,0 +1,1 @@
+SELECT id, image_path, user_given_name, embedding FROM face_analyze
