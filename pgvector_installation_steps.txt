@@ -1,0 +1,55 @@
+
+✅ Steps to Install the `pgvector` Extension on Windows
+
+Step 1: Check whether PostgreSQL is installed
+- Open Command Prompt and run:
+  psql --version
+- If not installed or not set in the environment variables, install PostgreSQL and ensure it's added to the system's PATH.
+
+Step 2: Ensure you have PostgreSQL version 17.5
+- You can verify this using:
+  psql --version
+  Expected output: psql (PostgreSQL) 17.5
+
+Step 3: Ensure C++ support in Visual Studio is installed
+- If not installed, go to https://visualstudio.microsoft.com/vs/features/cplusplus/
+- Download Visual Studio Community 2022
+- Run the installer and select the "Desktop development with C++" workload only
+
+Step 4: Open the Developer Command Prompt
+- Press Windows + S, search for "Developer Command Prompt for VS 2022"
+- Right-click it and select "Run as Administrator"
+
+Step 5: Set up the Visual Studio environment
+- In the Developer Command Prompt, run:
+  call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+
+Step 6: Set the PostgreSQL root environment variable
+- Run:
+  set PGROOT="C:\Program Files\PostgreSQL\17"
+
+Step 7: Navigate to the temporary directory
+- Run:
+  cd %TEMP%
+
+Step 8: Clone the pgvector repository
+- Run:
+  git clone --branch v0.8.0 https://github.com/pgvector/pgvector.git
+
+Step 9: Navigate into the cloned directory
+- Run:
+  cd pgvector
+
+Step 10: Build the extension using nmake
+- Run:
+  nmake /F Makefile.win
+
+Step 11: Install the extension
+- Run:
+  nmake /F Makefile.win install
+
+Step 12 (Final Step): Enable the extension in PostgreSQL
+- Connect to PostgreSQL using psql:
+  psql -U postgres -d your_database_name
+- Run the SQL command:
+  CREATE EXTENSION vector;
